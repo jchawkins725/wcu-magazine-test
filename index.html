@@ -1,0 +1,110 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .magazine-header {
+      height: 400vh;
+      position: relative;
+    }
+    .magazine-header .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    .magazine-header .background-img {
+      width: 100%;
+      height: 100%;
+    }
+    .magazine-header .background-img img {
+      height: 100%;
+      width: 100%;
+      max-width: none;
+      object-fit: cover;
+    }
+    .magazine-header .left-tree {
+      position: absolute;
+      bottom: 0;
+      z-index: 101;
+    }
+    .magazine-header .right-tree {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 101;
+    }
+    .magazine-header .right-tree img,
+    .magazine-header .left-tree img {
+      max-height: 100vh;
+    }
+    .magazine-header .title-container {
+      position: absolute;
+      left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+      z-index: 100;
+      width: 100%;
+      text-align: center;
+    }
+    .magazine-header .title-container h1 {
+      color: white;
+      text-transform: uppercase;
+      font-family: 'Roboto Slab', serif;
+      font-size: 100px;
+    }
+    .magazine-content {
+      background: white;
+      padding: 40px;
+      position: relative;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <section class="magazine-header">
+    <div class="header-container">
+      <div class="background-img">
+        <img src="forest-back.png" alt="forest" />
+      </div>
+      <div class="left-tree">
+        <img src="left-tree.png" alt="tree" />
+      </div>
+      <div class="right-tree">
+        <img src="right-tree.png" alt="tree" />
+      </div>
+      <div class="title-container">
+        <h1>Hallowed Ground</h1>
+      </div>
+    </div>
+  </section>
+  <section class="magazine-content">
+    <h1>Title</h1>
+    <h2>Subtitle</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+      anim id est laborum.
+    </p>
+  </section>
+  <script>
+    function scrollEffect() {
+      if (window.scrollY > 0) {
+        document.querySelector(".magazine-header .background-img").style.transform = `scale(${1 + window.scrollY / 80000})`;
+        document.querySelector(".magazine-header .left-tree").style.transform = `scale(${1 + window.scrollY / 8000})translate(-${window.scrollY/80}%,-${window.scrollY/10000}%)`;
+        document.querySelector(".magazine-header .right-tree").style.transform = `scale(${1 + window.scrollY / 24000})translate(${window.scrollY/400}%,${window.scrollY/10000}%)`;
+        document.querySelector(".magazine-header .title-container h1").style.transform = `scale(${1 + window.scrollY / 16000})`;
+        document.querySelector(".magazine-header .title-container h1").style.opacity = 1 - window.scrollY / 16000;
+      } else {
+        document.querySelector(".magazine-header .background-img").style.transform = `scale(1)`;
+      }
+    }
+    document.addEventListener("scroll", scrollEffect);
+  </script>
+</body>
