@@ -31,17 +31,18 @@
     .magazine-header .left-tree {
       position: absolute;
       bottom: 0;
-      z-index: 101;
+      z-index: 102;
+      left: calc(26% - 300px);
     }
     .magazine-header .right-tree {
       position: absolute;
       bottom: 0;
-      right: 0;
+      right: calc(20% - 250px);
       z-index: 101;
     }
     .magazine-header .right-tree img,
     .magazine-header .left-tree img {
-      max-height: 100vh;
+      height: 100vh;
     }
     .magazine-header .title-container {
       position: absolute;
@@ -57,6 +58,7 @@
       text-transform: uppercase;
       font-family: 'Roboto Slab', serif;
       font-size: 100px;
+      opacity: .6;
     }
     .magazine-content {
       background: white;
@@ -99,8 +101,8 @@
         document.querySelector(".magazine-header .background-img").style.transform = `scale(${1 + window.scrollY / 80000})`;
         document.querySelector(".magazine-header .left-tree").style.transform = `scale(${1 + window.scrollY / 8000})translate(-${window.scrollY/80}%,-${window.scrollY/10000}%)`;
         document.querySelector(".magazine-header .right-tree").style.transform = `scale(${1 + window.scrollY / 24000})translate(${window.scrollY/400}%,${window.scrollY/10000}%)`;
-        document.querySelector(".magazine-header .title-container h1").style.transform = `scale(${1 + window.scrollY / 16000})`;
-        document.querySelector(".magazine-header .title-container h1").style.opacity = 1 - window.scrollY / 16000;
+        document.querySelector(".magazine-header .title-container h1").style.transform = `scale(${1 + window.scrollY / 20000})translate(0%,-${window.scrollY/500}%)`;
+        document.querySelector(".magazine-header .title-container h1").style.opacity = .6 + window.scrollY / 5000;
       } else {
         document.querySelector(".magazine-header .background-img").style.transform = `scale(1)`;
       }
