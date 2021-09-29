@@ -1,11 +1,10 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/pog5xdj.css" />
   <style>
     body {
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
     .magazine-header {
       height: 400vh;
@@ -47,24 +46,113 @@
     .magazine-header .title-container {
       position: absolute;
       left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+      top: 50%;
+      transform: translate(-50%, -50%);
       z-index: 100;
       width: 100%;
       text-align: center;
     }
     .magazine-header .title-container h1 {
       color: white;
+      color: hsl(76, 37%, 70%);
       text-transform: uppercase;
-      font-family: 'Roboto Slab', serif;
-      font-size: 100px;
-      opacity: .6;
+      font-family: urw-form, sans-serif;
+      font-size: 40px;
+      opacity: 0.7;
+      width: 80%;
+      max-width: 600px;
+      margin: auto;
+      font-weight: 600;
+      line-height: 1em;
+    }
+    figure,
+    .magazine-content {
+      position: relative;
     }
     .magazine-content {
       background: white;
-      padding: 40px;
+    }
+    .quote-grid {
       position: relative;
-      height: 100vh;
+      z-index: 1;
+    }
+    .quote-container {
+      margin: 0px;
+      background: rgb(61, 53, 43);
+    }
+    blockquote,
+    figcaption {
+      max-width: 804px;
+      padding: 0px 36px;
+      margin: auto;
+      font-size: 20px;
+      line-height: 1.3em;
+      color: white;
+      font-family: yrsa, serif;
+    }
+    blockquote {
+      padding-top: 72px;
+    }
+    figcaption {
+      margin-top: 18px;
+      padding-bottom: 72px;
+    }
+    .content-container {
+      max-width: 804px;
+      padding: 36px 36px;
+      padding-top: 20vw;
+      margin: auto;
+      font-family: urw-form, sans-serif;
+    }
+    .content-container h2 {
+      font-family: yrsa, serif;
+      font-weight: 600;
+      text-align: center;
+      font-size: 28px;
+    }
+    .content-container p {
+      font-family: urw-form, sans-serif;
+      font-size: 16px;
+      line-height: 1.8em;
+    }
+    .grid .hori {
+      height: 2px;
+      background: rgb(202, 224, 142);
+      position: absolute;
+      transform: scaleX(0);
+    }
+    .grid .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .grid .vert {
+      width: 2px;
+      background: rgb(202, 224, 142);
+      position: absolute;
+      transform: scaleY(0);
+    }
+    @media (min-width: 350px) {
+      .magazine-header .title-container h1 {
+        font-size: 50px;
+      }
+    }
+    @media (min-width: 500px) {
+      .magazine-header .title-container h1 {
+        font-size: 70px;
+      }
+      blockquote,
+      figcaption {
+        font-size: 28px;
+      }
+    }
+    @media (min-width: 800px) {
+      .magazine-header .title-container h1 {
+        font-size: 100px;
+      }
+      blockquote,
+      figcaption {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
@@ -72,41 +160,175 @@
   <section class="magazine-header">
     <div class="header-container">
       <div class="background-img">
-        <img src="forest-back.png" alt="forest" />
+        <img src="Hallowed-Background.jpg" alt="forest" />
       </div>
       <div class="left-tree">
-        <img src="left-tree.png" alt="tree" />
+        <img src="TREE1.png" alt="tree" />
       </div>
       <div class="right-tree">
-        <img src="right-tree.png" alt="tree" />
+        <img src="TREE3.png" alt="tree" />
       </div>
       <div class="title-container">
         <h1>Hallowed Ground</h1>
       </div>
     </div>
   </section>
+  <div class="quote-grid">
+    <div class="grid">
+      <div class="line-1 hori" style="width: 21%; top: -14vw; left: 13vw"></div>
+      <div class="line-2 hori" style="width: 87%; top: -7vw"></div>
+      <div class="line-3 hori" style="width: 100%; top: -2px"></div>
+      <div class="line-4 hori" style="width: 100%; bottom: -2px"></div>
+      <div class="line-5 hori" style="width: 80%; bottom: -7vw; left: 10vw"></div>
+      <div class="line-1 vert" style="height: calc(30vw + 380px); top: -21vw; left: 20vw"></div>
+      <div class="line-2 vert" style="height: calc(30vw + 380px); top: -21vw; left: 27vw"></div>
+      <div class="line-3 vert" style="height: calc(30vw + 380px); top: -21vw; left: 34vw"></div>
+      <div class="line-4 vert" style="height: calc(30vw + 380px); top: -14vw; left: 41vw"></div>
+      <div class="line-5 vert" style="height: calc(30vw + 340px); top: -14vw; left: 48vw"></div>
+      <div class="line-6 vert" style="height: calc(30vw + 340px); top: -14vw; left: 55vw"></div>
+      <div class="line-7 vert" style="height: calc(30vw + 150px); top: -21vw; left: 62vw"></div>
+      <div class="line-8 vert" style="height: calc(30vw + 200px); top: -7vw; left: 69vw"></div>
+      <div class="line-9 vert" style="height: calc(30vw + 229px); top: -10vw; left: 76vw"></div>
+      <div class="line-10 vert" style="height: calc(30vw + 0px); top: -7vw; left: 83vw"></div>
+    </div>
+    <figure class="quote-container">
+      <blockquote>
+        "What we do know is each grave represents someone who lived and who died before the Civil War. Someone who had an occupation, someone who
+        drank from the spring, someone who looked up at the stars."
+      </blockquote>
+      <figcaption>Antoine Fletcher</figcaption>
+    </figure>
+  </div>
   <section class="magazine-content">
-    <h1>Title</h1>
-    <h2>Subtitle</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-      anim id est laborum.
-    </p>
+    <div class="content-container">
+      <h2>WCU and the Smokies’ African American Experience</h2>
+      <p>
+        A light mist was clinging to the treetops and sounds of songbirds mixed with morning traffic at Mingus Mill in Great Smoky Mountains National
+        Park, not far from Cherokee. Blair Tormey, a geologist with the Program for the Study of Developed Shorelines at Western Carolina University,
+        adjusted his ballcap and quickly assembled a ground penetrating radar unit, looking much like a robotic lawn mower, before pushing it up the
+        hillside. The destination, an almost forgotten cemetery, is a long way from any coastal beachfront or tidal basin where he might otherwise be
+        working on a day like today. A rectangular clearing of some 1,500 square feet creates a small graveyard known variously as the Enloe Cemetery
+        or the Mingus Mill burial ground. Five mounded graves, some with mossy stones as markers, are close to the still-operational gristmill, but a
+        long way from history books, with the occupants unknown other than their status as enslaved people. “What we do know is each grave represents
+        someone who lived and who died before the Civil War. Someone who had an occupation, someone who drank from the spring, someone who looked up
+        at the stars,” said Antoine Fletcher, a National Park Service science communicator, as he walked up to the site to join Tormey. Fletcher is
+        the director of the Smokies’ African American Experience, a project created by Great Smoky Mountains National Park in 2018 with funding from
+        nonprofit partners Great Smoky Mountains Association and Friends of the Smokies. WCU’s Mountain Heritage Center joined the effort in 2019 and
+        in 2020 the Study of Developed Shorelines became a part of the project. The goal is simple and direct: to learn, then share the stories of
+        African Americans in the Southern Appalachians. A “pop-up” exhibit is planned for outreach. Regional universities, including WCU, will hold
+        panel discussions and local communities will sponsor townhalls in the near future. Little was written – or seemingly known – about the African
+        Americans who called these hills home before the establishment of the national park. It is a complicated history to unravel, historians point
+        out, with misrepresentations and misunderstandings throughout the timeline and precious little documentation. Horace Kephart, the early 20th
+        century writer and park advocate, wrote in his 1913 book “Our Southern Highlanders” that “… it was understood that the Appalachian highlands
+        were occupied by a peculiar people called ‘mountain whites.’ This odd name was given them not to distinguish them from mountain negroes, for
+        there were, practically, no mountain negroes … throughout most of Appalachia the population is almost exclusively white.” In the coming year,
+        WCU’s Global Black Studies minor program will become involved with the Smokies’ African American Experience Project, with program director
+        David Walton also planning to include the university’s history department, the Romare Bearden branch of the Association for the Study of
+        African American Life and History, and the Asheville Alumni Chapter of Kappa Alpha Psi. “There is incomplete documentation on this site –
+        there’s not even a set number of burials recorded,” said Tormey, pushing first uphill and then down in a clear, delineated path. “Which makes
+        this GPR work so important. The signal can penetrate down 8 to 10 feet and allows you to see disruptions in the earth from coffins to simple
+        burials, to the outline of a burial shaft.” Momentarily, two Labrador retrievers trained in detecting human decomposition (often called
+        “cadaver dogs”) were deployed on the site by Paul Martin ’11 of Rossville, Tennessee. “The dogs will allow me to ‘look beneath’ the surface,”
+        said Martin, who operates his own forensic company, Martin Archaeology Consulting. “We will give the dogs the space and the time to detect
+        odors they have been trained to respond to. Decomposition is a chemical change and an ongoing one. If there’s something here, they will find
+        it.” Tormey’s GPR already had confirmed three other unmarked graves closer to the five known ones. Working independently and in separate
+        sessions, both Labs indicate yet another potential burial several yards downslope from the others. Tails wagging, the dogs were returned to
+        kennel carriers. Researchers smiled, made notes and prepared for the next site. There are six known African American cemeteries or burial
+        sites in the Smokies, with others highly probable. The research isn’t all underground. Contemporary oral histories are being recorded, while
+        the Special and Digital Collections at WCU’s Hunter Library recently digitized a collection of interviews conducted between 1986 and 1989 with
+        African Americans from Western North Carolina, all of whom were older than 69 at the time. The project will utilize family histories, census
+        data and photo albums. It’s an incredible story waiting to be told, Fletcher said. “I want this story to overlap with the Native American
+        story and the early white settlers’ story, because these people were a lot alike. The mountain culture is rich and that history was shared by
+        many.” The Smokies African American Experience is an ongoing project, inviting anyone and everyone interested or with information to
+        participate. Contact Fletcher at antoine_fletcher@nps.gov or 828-926-6251.
+      </p>
+    </div>
   </section>
   <script>
     function scrollEffect() {
       if (window.scrollY > 0) {
         document.querySelector(".magazine-header .background-img").style.transform = `scale(${1 + window.scrollY / 80000})`;
-        document.querySelector(".magazine-header .left-tree").style.transform = `scale(${1 + window.scrollY / 8000})translate(-${window.scrollY/80}%,-${window.scrollY/10000}%)`;
-        document.querySelector(".magazine-header .right-tree").style.transform = `scale(${1 + window.scrollY / 24000})translate(${window.scrollY/400}%,${window.scrollY/10000}%)`;
-        document.querySelector(".magazine-header .title-container h1").style.transform = `scale(${1 + window.scrollY / 20000})translate(0%,-${window.scrollY/500}%)`;
-        document.querySelector(".magazine-header .title-container h1").style.opacity = .6 + window.scrollY / 5000;
+        document.querySelector(".magazine-header .left-tree").style.transform = `scale(${1 + window.scrollY / 5000})translate(-${
+          window.scrollY / 70
+        }%,-${window.scrollY / 1000}%)`;
+        document.querySelector(".magazine-header .right-tree").style.transform = `scale(${1 + window.scrollY / 30000})translate(${
+          window.scrollY / 600
+        }%,${window.scrollY / 6000}%)`;
+        document.querySelector(".magazine-header .title-container h1").style.transform = `scale(${1 + window.scrollY / 20000})translate(0%,-${
+          window.scrollY / 500
+        }%)`;
+        document.querySelector(".magazine-header .title-container h1").style.opacity = 0.7 + window.scrollY / 8000;
       } else {
         document.querySelector(".magazine-header .background-img").style.transform = `scale(1)`;
       }
     }
     document.addEventListener("scroll", scrollEffect);
+
+    var observerOptions = {
+      root: null,
+      rootMargin: "50px",
+      threshold: buildThresholdList(),
+    };
+
+    function buildThresholdList() {
+      var thresholds = [];
+      var numSteps = 100;
+      for (var i = 1.0; i <= numSteps; i++) {
+        var ratio = i / numSteps;
+        thresholds.push(ratio);
+      }
+      thresholds.push(0);
+      return thresholds;
+    }
+
+    function animateGrid() {
+      var grids = document.querySelectorAll(".quote-container");
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var gridLines = entry.target.parentElement.querySelectorAll(".grid > div");
+          if (entry.intersectionRatio > 0.0) {
+            for (var i = 0; i < gridLines.length; i++) {
+              if (gridLines[i].classList.contains("hori")) {
+                gridLines[i].style.transform = `scaleX(${entry.intersectionRatio})`;
+              } else {
+                gridLines[i].style.transform = `scaleY(${entry.intersectionRatio})`;
+              }
+            }
+          } else {
+            for (var i = 0; i < gridLines.length; i++) {
+              if (gridLines[i].classList.contains("hori")) {
+                gridLines[i].style.transform = `scaleX(0)`;
+              } else {
+                gridLines[i].style.transform = `scaleY(0)`;
+              }
+            }
+          }
+        });
+      }, observerOptions);
+
+      for (var i = 0; i < grids.length; i++) {
+        observer.observe(grids[i]);
+      }
+    }
+
+    function fadeOutTop() {
+      var header = document.querySelectorAll(".magazine-header");
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var children = entry.target.children[0].children;
+          console.log(entry.intersectionRatio)
+          if (entry.intersectionRatio <= 0.25) {
+            for (var i = 0; i < children.length; i++) {
+              children[i].style.filter = `brightness(${4 * entry.intersectionRatio})`;
+            }
+          }
+        });
+      }, observerOptions);
+      for (var i = 0; i < header.length; i++) {
+        observer.observe(header[i]);
+      }
+    }
+    window.addEventListener("load", animateGrid);
+    window.addEventListener("load", fadeOutTop);
   </script>
 </body>
