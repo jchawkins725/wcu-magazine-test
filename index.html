@@ -1,6 +1,13 @@
 <head>
   <link rel="stylesheet" href="https://use.typekit.net/pog5xdj.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="https://kit.fontawesome.com/dff9e66e1d.js"></script>
   <style>
+    header {
+      position: relative;
+      z-index: 2;
+      background: white;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -81,7 +88,7 @@
       background: rgb(61, 53, 43);
     }
     blockquote,
-    figcaption {
+    .quote-container figcaption {
       max-width: 804px;
       padding: 0px 36px;
       margin: auto;
@@ -89,11 +96,14 @@
       line-height: 1.3em;
       color: white;
       font-family: yrsa, serif;
+      float: none;
+      width: auto;
     }
     blockquote {
       padding-top: 72px;
+      border: none;
     }
-    figcaption {
+    .quote-container figcaption {
       margin-top: 18px;
       padding-bottom: 72px;
     }
@@ -108,18 +118,43 @@
       font-family: yrsa, serif;
       font-weight: 600;
       text-align: center;
-      font-size: 28px;
+      font-size: 27px;
+      color: rgb(61, 53, 43);
     }
     .content-container p {
       font-family: urw-form, sans-serif;
       font-size: 16px;
       line-height: 1.8em;
     }
+    .content-container figure {
+      margin: 40px 0px;
+    }
+    .content-container .caption {
+      display: flex;
+      margin: 10px 20px;
+    }
+    .content-container figcaption {
+      font-family: urw-form, sans-serif;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+    .content-container .caption i {
+      color: rgb(202, 224, 142);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+    .content-container img {
+      width: 100%;
+    }
+    .two-photos {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 40px 0px;
+    }
     .grid .hori {
       height: 2px;
       background: rgb(202, 224, 142);
       position: absolute;
-      transform: scaleX(0);
     }
     .grid .container {
       max-width: 800px;
@@ -129,28 +164,170 @@
       width: 2px;
       background: rgb(202, 224, 142);
       position: absolute;
+    }
+    .quote-grid .grid > div {
       transform: scaleY(0);
+    }
+    .background-overlay {
+      background: black;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 100px 0px;
+      position: relative;
+    }
+    .video-container a {
+      max-width: 80%;
+      position: relative;
+    }
+    .video-container a:hover i {
+      transition: opacity 0.3s;
+      opacity: 1;
+    }
+    .video-container img {
+      width: 100%;
+    }
+    .video-container i {
+      color: rgb(202, 224, 142);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      font-size: 12vw;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .lightbox {
+      background: rgba(61, 53, 43, 0.9);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 10000;
+      top: 0;
+      left: 0;
+      cursor: zoom-out;
+      opacity: 0;
+      transform: scale(0.9);
+      visibility: hidden;
+      transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
+    }
+    .lightbox.open {
+      opacity: 1;
+      transform: scale(1);
+      visibility: visible;
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .lightbox .hori {
+      transform: scaleX(0);
+      transition: transform 0.5s;
+    }
+    .lightbox .vert {
+      transform: scaleY(0);
+      transition: transform 0.5s;
+    }
+    .lightbox.open .hori {
+      transform: scaleX(1);
+      transition: transform 0.5s 1s;
+    }
+    .lightbox.open .vert {
+      transform: scaleY(1);
+      transition: transform 0.5s 1s;
+    }
+    .lightbox.open .line-1.hori {
+      transform: scaleX(1);
+      transition: transform 0.5s 0.5s;
+    }
+    .lightbox.open .line-1.vert {
+      transform: scaleY(1);
+      transition: transform 0.5s 0.5s;
+    }
+    .lightbox-container {
+      max-width: 100vh;
+      width: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      cursor: auto;
+      background: black;
+    }
+    .lightbox iframe {
+      visibility: hidden;
+      transition: visibility 0.3s;
+    }
+    .lightbox iframe.selected {
+      visibility: visible;
+    }
+    .lightbox button {
+      font-size: 50px;
+      color: rgba(202, 224, 142, 0.7);
+      right: 25px;
+      position: absolute;
+      top: 25px;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
     @media (min-width: 350px) {
       .magazine-header .title-container h1 {
         font-size: 50px;
+      }
+      blockquote,
+      .quote-container figcaption {
+        font-size: 23px;
       }
     }
     @media (min-width: 500px) {
       .magazine-header .title-container h1 {
         font-size: 70px;
       }
+      .two-photos img {
+        width: calc(50% - 2px);
+      }
+      .two-photos img:nth-of-type(2) {
+        border-left: 2px solid rgb(202, 224, 142);
+      }
+      .content-container figcaption {
+        font-size: 13px;
+      }
+      .video-container i {
+        font-size: 80px;
+      }
+      .content-container h2 {
+        font-size: 38px;
+      }
+      .video-container a {
+        width: 402px;
+      }
       blockquote,
-      figcaption {
-        font-size: 28px;
+      .quote-container figcaption {
+        font-size: 26px;
       }
     }
     @media (min-width: 800px) {
       .magazine-header .title-container h1 {
         font-size: 100px;
       }
+      .content-container h2 {
+        font-size: 52px;
+      }
+      .content-container p {
+        font-size: 17px;
+      }
+      .content-container .caption {
+        margin: 20px 40px;
+      }
       blockquote,
-      figcaption {
+      .quote-container figcaption {
         font-size: 32px;
       }
     }
@@ -172,6 +349,7 @@
         <h1>Hallowed Ground</h1>
       </div>
     </div>
+    <div class="background-overlay"></div>
   </section>
   <div class="quote-grid">
     <div class="grid">
@@ -191,7 +369,7 @@
       <div class="line-9 vert" style="height: calc(30vw + 229px); top: -10vw; left: 76vw"></div>
       <div class="line-10 vert" style="height: calc(30vw + 0px); top: -7vw; left: 83vw"></div>
     </div>
-    <figure class="quote-container">
+    <figure class="quote-container grid-animation">
       <blockquote>
         "What we do know is each grave represents someone who lived and who died before the Civil War. Someone who had an occupation, someone who
         drank from the spring, someone who looked up at the stars."
@@ -204,49 +382,178 @@
       <h2>WCU and the Smokies’ African American Experience</h2>
       <p>
         A light mist was clinging to the treetops and sounds of songbirds mixed with morning traffic at Mingus Mill in Great Smoky Mountains National
-        Park, not far from Cherokee. Blair Tormey, a geologist with the Program for the Study of Developed Shorelines at Western Carolina University,
-        adjusted his ballcap and quickly assembled a ground penetrating radar unit, looking much like a robotic lawn mower, before pushing it up the
-        hillside. The destination, an almost forgotten cemetery, is a long way from any coastal beachfront or tidal basin where he might otherwise be
-        working on a day like today. A rectangular clearing of some 1,500 square feet creates a small graveyard known variously as the Enloe Cemetery
-        or the Mingus Mill burial ground. Five mounded graves, some with mossy stones as markers, are close to the still-operational gristmill, but a
-        long way from history books, with the occupants unknown other than their status as enslaved people. “What we do know is each grave represents
-        someone who lived and who died before the Civil War. Someone who had an occupation, someone who drank from the spring, someone who looked up
-        at the stars,” said Antoine Fletcher, a National Park Service science communicator, as he walked up to the site to join Tormey. Fletcher is
-        the director of the Smokies’ African American Experience, a project created by Great Smoky Mountains National Park in 2018 with funding from
-        nonprofit partners Great Smoky Mountains Association and Friends of the Smokies. WCU’s Mountain Heritage Center joined the effort in 2019 and
-        in 2020 the Study of Developed Shorelines became a part of the project. The goal is simple and direct: to learn, then share the stories of
-        African Americans in the Southern Appalachians. A “pop-up” exhibit is planned for outreach. Regional universities, including WCU, will hold
-        panel discussions and local communities will sponsor townhalls in the near future. Little was written – or seemingly known – about the African
-        Americans who called these hills home before the establishment of the national park. It is a complicated history to unravel, historians point
-        out, with misrepresentations and misunderstandings throughout the timeline and precious little documentation. Horace Kephart, the early 20th
-        century writer and park advocate, wrote in his 1913 book “Our Southern Highlanders” that “… it was understood that the Appalachian highlands
-        were occupied by a peculiar people called ‘mountain whites.’ This odd name was given them not to distinguish them from mountain negroes, for
-        there were, practically, no mountain negroes … throughout most of Appalachia the population is almost exclusively white.” In the coming year,
-        WCU’s Global Black Studies minor program will become involved with the Smokies’ African American Experience Project, with program director
-        David Walton also planning to include the university’s history department, the Romare Bearden branch of the Association for the Study of
-        African American Life and History, and the Asheville Alumni Chapter of Kappa Alpha Psi. “There is incomplete documentation on this site –
-        there’s not even a set number of burials recorded,” said Tormey, pushing first uphill and then down in a clear, delineated path. “Which makes
-        this GPR work so important. The signal can penetrate down 8 to 10 feet and allows you to see disruptions in the earth from coffins to simple
-        burials, to the outline of a burial shaft.” Momentarily, two Labrador retrievers trained in detecting human decomposition (often called
-        “cadaver dogs”) were deployed on the site by Paul Martin ’11 of Rossville, Tennessee. “The dogs will allow me to ‘look beneath’ the surface,”
-        said Martin, who operates his own forensic company, Martin Archaeology Consulting. “We will give the dogs the space and the time to detect
-        odors they have been trained to respond to. Decomposition is a chemical change and an ongoing one. If there’s something here, they will find
-        it.” Tormey’s GPR already had confirmed three other unmarked graves closer to the five known ones. Working independently and in separate
-        sessions, both Labs indicate yet another potential burial several yards downslope from the others. Tails wagging, the dogs were returned to
-        kennel carriers. Researchers smiled, made notes and prepared for the next site. There are six known African American cemeteries or burial
-        sites in the Smokies, with others highly probable. The research isn’t all underground. Contemporary oral histories are being recorded, while
-        the Special and Digital Collections at WCU’s Hunter Library recently digitized a collection of interviews conducted between 1986 and 1989 with
-        African Americans from Western North Carolina, all of whom were older than 69 at the time. The project will utilize family histories, census
-        data and photo albums. It’s an incredible story waiting to be told, Fletcher said. “I want this story to overlap with the Native American
-        story and the early white settlers’ story, because these people were a lot alike. The mountain culture is rich and that history was shared by
-        many.” The Smokies African American Experience is an ongoing project, inviting anyone and everyone interested or with information to
-        participate. Contact Fletcher at antoine_fletcher@nps.gov or 828-926-6251.
+        Park, not far from Cherokee.
       </p>
+      <p>
+        Blair Tormey, a geologist with the Program for the Study of Developed Shorelines at Western Carolina University, adjusted his ballcap and
+        quickly assembled a ground penetrating radar unit, looking much like a robotic lawn mower, before pushing it up the hillside. The destination,
+        an almost forgotten cemetery, is a long way from any coastal beachfront or tidal basin where he might otherwise be working on a day like
+        today.
+      </p>
+      <p>
+        A rectangular clearing of some 1,500 square feet creates a small graveyard known variously as the Enloe Cemetery or the Mingus Mill burial
+        ground. Five mounded graves, some with mossy stones as markers, are close to the still-operational gristmill, but a long way from history
+        books, with the occupants unknown other than their status as enslaved people.
+      </p>
+      <p>
+        “What we do know is each grave represents someone who lived and who died before the Civil War. Someone who had an occupation, someone who
+        drank from the spring, someone who looked up at the stars,” said Antoine Fletcher, a National Park Service science communicator, as he walked
+        up to the site to join Tormey.
+      </p>
+      <figure class="image-caption">
+        <img src="hallowed-tomey-fletcher.jpg" alt="Blair Tormey talking with Antoine Flecther" />
+        <div class="caption">
+          <i class="fa-solid fa-plus"></i>
+          <figcaption>
+            WCU's Blair Tormey discusses early 19th century burial rituals with Antoine Fletcher, the National Park Service's project manager for the
+            African American Experience.
+          </figcaption>
+        </div>
+      </figure>
+      <p>
+        Fletcher is the director of the Smokies’ African American Experience, a project created by Great Smoky Mountains National Park in 2018 with
+        funding from nonprofit partners Great Smoky Mountains Association and Friends of the Smokies. WCU’s Mountain Heritage Center joined the effort
+        in 2019 and in 2020 the Study of Developed Shorelines became a part of the project.
+      </p>
+      <p>
+        The goal is simple and direct: to learn, then share the stories of African Americans in the Southern Appalachians. A “pop-up” exhibit is
+        planned for outreach. Regional universities, including WCU, will hold panel discussions and local communities will sponsor townhalls in the
+        near future.
+      </p>
+      <p>
+        Little was written – or seemingly known – about the African Americans who called these hills home before the establishment of the national
+        park. It is a complicated history to unravel, historians point out, with misrepresentations and misunderstandings throughout the timeline and
+        precious little documentation. Horace Kephart, the early 20th century writer and park advocate, wrote in his 1913 book “Our Southern
+        Highlanders” that “… it was understood that the Appalachian highlands were occupied by a peculiar people called ‘mountain whites.’ This odd
+        name was given them not to distinguish them from mountain negroes, for there were, practically, no mountain negroes … throughout most of
+        Appalachia the population is almost exclusively white.”
+      </p>
+      <div class="video-container">
+        <div class="grid">
+          <div class="line-1 hori" style="width: 55%; top: calc(-50px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-2 hori" style="width: 95%; top: calc(-10px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-3 hori" style="width: 100%; top: calc(30px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-4 hori" style="width: 87%; top: calc(70px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-5 hori" style="width: 60%; top: calc(110px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-6 hori" style="width: 80%; top: calc(150px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-7 hori" style="width: 80%; top: calc(190px + 3vw); left: 0px; transform: scaleX(1)"></div>
+          <div class="line-1 vert" style="height: calc(120px + 3vw); top: calc(60px + 3vw); left: calc(0px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-2 vert" style="height: calc(181px + 3vw); top: calc(0px + 3vw); left: calc(40px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-3 vert" style="height: calc(298px + 3vw); top: calc(-64px + 3vw); left: calc(80px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-4 vert" style="height: calc(306px + 3vw); top: calc(-100px + 3vw); left: calc(120px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-5 vert" style="height: calc(286px + 3vw); top: calc(-100px + 3vw); left: calc(160px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-6 vert" style="height: calc(281px + 3vw); top: calc(-50px + 3vw); left: calc(200px + 3vw); transform: scaleY(1)"></div>
+        </div>
+        <a class="video1 grid-animation" href="#" aria-label="View Video of More about the site" data-num="0">
+          <img src="hallowed-coins.jpg" alt="penny and dime on a rock" />
+          <i class="fa-solid fa-play"></i>
+        </a>
+      </div>
+      <p>
+        In the coming year, WCU’s Global Black Studies minor program will become involved with the Smokies’ African American Experience Project, with
+        program director David Walton also planning to include the university’s history department, the Romare Bearden branch of the Association for
+        the Study of African American Life and History, and the Asheville Alumni Chapter of Kappa Alpha Psi.
+      </p>
+      <p>
+        “There is incomplete documentation on this site – there’s not even a set number of burials recorded,” said Tormey, pushing first uphill and
+        then down in a clear, delineated path. “Which makes this GPR work so important. The signal can penetrate down 8 to 10 feet and allows you to
+        see disruptions in the earth from coffins to simple burials, to the outline of a burial shaft.”
+      </p>
+      <p>
+        Momentarily, two Labrador retrievers trained in detecting human decomposition (often called “cadaver dogs”) were deployed on the site by Paul
+        Martin ’11 of Rossville, Tennessee.
+      </p>
+      <div class="two-photos">
+        <img src="hallowed-lab1.jpg" alt="Labrador retriever searching graves" />
+        <img src="hallowed-lab2.jpg" alt="Labrador retriever searching graves" />
+      </div>
+      <p>
+        “The dogs will allow me to ‘look beneath’ the surface,” said Martin, who operates his own forensic company, Martin Archaeology Consulting. “We
+        will give the dogs the space and the time to detect odors they have been trained to respond to. Decomposition is a chemical change and an
+        ongoing one. If there’s something here, they will find it.”
+      </p>
+      <p>
+        Tormey’s GPR already had confirmed three other unmarked graves closer to the five known ones. Working independently and in separate sessions,
+        both Labs indicate yet another potential burial several yards downslope from the others. Tails wagging, the dogs were returned to kennel
+        carriers. Researchers smiled, made notes and prepared for the next site.
+      </p>
+      <p>There are six known African American cemeteries or burial sites in the Smokies, with others highly probable.</p>
+      <p>
+        The research isn’t all underground. Contemporary oral histories are being recorded, while the Special and Digital Collections at WCU’s Hunter
+        Library recently digitized a collection of interviews conducted between 1986 and 1989 with African Americans from Western North Carolina, all
+        of whom were older than 69 at the time. The project will utilize family histories, census data and photo albums.
+      </p>
+      <p>
+        It’s an incredible story waiting to be told, Fletcher said. “I want this story to overlap with the Native American story and the early white
+        settlers’ story, because these people were a lot alike. The mountain culture is rich and that history was shared by many.”
+      </p>
+      <div class="video-container">
+        <div class="grid">
+          <div class="line-1 hori" style="width: 55%; top: calc(-50px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-2 hori" style="width: 95%; top: calc(-10px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-3 hori" style="width: 100%; top: calc(30px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-4 hori" style="width: 87%; top: calc(70px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-5 hori" style="width: 60%; top: calc(110px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-6 hori" style="width: 80%; top: calc(150px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-7 hori" style="width: 80%; top: calc(190px + 3vw); right: 0px; transform: scaleX(1)"></div>
+          <div class="line-1 vert" style="height: calc(120px + 3vw); top: calc(60px + 3vw); right: calc(0px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-2 vert" style="height: calc(181px + 3vw); top: calc(0px + 3vw); right: calc(40px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-3 vert" style="height: calc(298px + 3vw); top: calc(-64px + 3vw); right: calc(80px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-4 vert" style="height: calc(306px + 3vw); top: calc(-100px + 3vw); right: calc(120px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-5 vert" style="height: calc(286px + 3vw); top: calc(-100px + 3vw); right: calc(160px + 3vw); transform: scaleY(1)"></div>
+          <div class="line-6 vert" style="height: calc(281px + 3vw); top: calc(-50px + 3vw); right: calc(200px + 3vw); transform: scaleY(1)"></div>
+        </div>
+        <a class="video2 grid-animation" href="#" aria-label="View Video of About the Radar" data-num="1">
+          <img src="hallowed-radar.jpg" alt="screenshot of ground penetrating radar unit" />
+          <i class="fa-solid fa-play"></i>
+        </a>
+      </div>
+      <figure class="image-caption">
+        <img src="hallowed-radar-screen.png" alt="Ground Penetrating Radar" />
+        <div class="caption">
+          <i class="fa-solid fa-plus"></i>
+          <figcaption>Ground Penetrating Radar</figcaption>
+        </div>
+      </figure>
+    </div>
+    <div class="lightbox">
+      <div class="lightbox-container">
+        <div class="grid">
+          <div class="line-1 hori" style="width: 83%; top: -4%; left: -3%"></div>
+          <div class="line-2 hori" style="width: 2%; top: 23%; left: -3%"></div>
+          <div class="line-3 hori" style="width: 2%; top: 50%; left: -3%"></div>
+          <div class="line-4 hori" style="width: 2%; top: 77%; left: -3%"></div>
+          <div class="line-1 vert" style="height: 86%; top: -6%; left: -2%"></div>
+          <div class="line-2 vert" style="height: 4%; top: -6%; left: 14%"></div>
+          <div class="line-3 vert" style="height: 4%; top: -6%; left: 30%"></div>
+          <div class="line-4 vert" style="height: 4%; top: -6%; left: 46%"></div>
+          <div class="line-5 vert" style="height: 4%; top: -6%; left: 62%"></div>
+          <div class="line-6 vert" style="height: 4%; top: -6%; left: 78%"></div>
+        </div>
+        <div style="padding: 56.25% 0 0 0; position: relative">
+          <iframe
+            src="https://player.vimeo.com/video/619956164?h=3f39de720a&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+            title="More about the Site"
+          ></iframe>
+          <iframe
+            src="https://player.vimeo.com/video/619956639?h=e1803fdb22&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+            title="About the Radar"
+          ></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+      <button aria-label="close lightbox"><i class="fal fa-times"></i></button>
     </div>
   </section>
   <script>
     function scrollEffect() {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 0 && window.scrollY < document.querySelector("div.quote-grid").offsetTop + 300) {
         document.querySelector(".magazine-header .background-img").style.transform = `scale(${1 + window.scrollY / 80000})`;
         document.querySelector(".magazine-header .left-tree").style.transform = `scale(${1 + window.scrollY / 5000})translate(-${
           window.scrollY / 70
@@ -258,9 +565,10 @@
           window.scrollY / 500
         }%)`;
         document.querySelector(".magazine-header .title-container h1").style.opacity = 0.7 + window.scrollY / 8000;
-      } else {
+        document.querySelector(".magazine-header .header-container").style.position = "fixed";
+      } else if (window.scrollY <= 0) {
         document.querySelector(".magazine-header .background-img").style.transform = `scale(1)`;
-      }
+      } else document.querySelector(".magazine-header .header-container").style.position = "static";
     }
     document.addEventListener("scroll", scrollEffect);
 
@@ -282,7 +590,8 @@
     }
 
     function animateGrid() {
-      var grids = document.querySelectorAll(".quote-container");
+      var grids = document.querySelectorAll(".grid-animation");
+      var overlay = document.querySelector(".magazine-header .background-overlay");
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           var gridLines = entry.target.parentElement.querySelectorAll(".grid > div");
@@ -294,6 +603,7 @@
                 gridLines[i].style.transform = `scaleY(${entry.intersectionRatio})`;
               }
             }
+            overlay.style.opacity = entry.intersectionRatio / 2;
           } else {
             for (var i = 0; i < gridLines.length; i++) {
               if (gridLines[i].classList.contains("hori")) {
@@ -302,6 +612,7 @@
                 gridLines[i].style.transform = `scaleY(0)`;
               }
             }
+            overlay.style.opacity = "0";
           }
         });
       }, observerOptions);
@@ -310,25 +621,29 @@
         observer.observe(grids[i]);
       }
     }
+    window.addEventListener("load", animateGrid);
 
-    function fadeOutTop() {
-      var header = document.querySelectorAll(".magazine-header");
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var children = entry.target.children[0].children;
-          console.log(entry.intersectionRatio)
-          if (entry.intersectionRatio <= 0.25) {
-            for (var i = 0; i < children.length; i++) {
-              children[i].style.filter = `brightness(${4 * entry.intersectionRatio})`;
-            }
-          }
-        });
-      }, observerOptions);
-      for (var i = 0; i < header.length; i++) {
-        observer.observe(header[i]);
+    var lightBox = document.querySelector(".lightbox");
+    var lightIframe = document.querySelectorAll(".lightbox iframe");
+    function openLightbox(e) {
+      e.preventDefault();
+      lightBox.classList.add("open");
+      lightIframe[this.dataset.num].classList.add("selected");
+      document.querySelector('body').style.overflowY = 'hidden';
+    }
+    var videoLightBox = document.querySelectorAll(".video-container a");
+    for (var i = 0; i < videoLightBox.length; i++) {
+      videoLightBox[i].addEventListener("click", openLightbox);
+    }
+    function closeLightBox(e) {
+      var isClickInside = lightIframe[0].contains(e.target);
+      if (!isClickInside) {
+        lightBox.classList.remove("open");
+        document.querySelector(".lightbox iframe.selected").src = document.querySelector(".lightbox iframe.selected").src;
+        document.querySelector(".lightbox iframe.selected").classList.remove("selected");
+        document.querySelector('body').style.overflowY = 'visible';
       }
     }
-    window.addEventListener("load", animateGrid);
-    window.addEventListener("load", fadeOutTop);
+    lightBox.addEventListener("click", closeLightBox);
   </script>
 </body>
